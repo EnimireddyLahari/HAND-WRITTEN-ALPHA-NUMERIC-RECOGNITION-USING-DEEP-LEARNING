@@ -1,11 +1,11 @@
-# MNIST Multi-Digit Handwritten Recognition
+# EMNIST Multi-Digit Handwritten Recognition
 ### Deep Learning Web Application · TensorFlow · Flask
 
 ---
 
 ## 📌 Project Description
 
-A full-stack web application that lets users **draw digits on a browser canvas** and instantly recognises them using a **Convolutional Neural Network (CNN)** trained on the MNIST dataset.
+A full-stack web application that lets users **draw digits on a browser canvas** and instantly recognises them using a **Convolutional Neural Network (CNN)** trained on the EMNIST dataset.
 
 - Draw a single digit → get a prediction with confidence score  
 - Draw multiple digits (e.g. `583`) → get each digit segmented and predicted separately
@@ -99,7 +99,7 @@ python train_model.py
 ```
 
 This will:
-- Download the MNIST dataset automatically (first run only)
+- Download the EMNIST dataset automatically (first run only)
 - Train the CNN for 5 epochs
 - Save `model/digit_model.h5`
 - Display training curves and save `training_curves.png`
@@ -148,13 +148,11 @@ When the user draws multiple digits (e.g. `527`), the backend:
 
 ## 📊 Dataset
 
-The **MNIST** (Modified National Institute of Standards and Technology) dataset contains:
-
-- **60,000** training images
-- **10,000** test images
-- Each image: **28 × 28 pixels**, grayscale, labelled 0–9
-
-The dataset is downloaded automatically by TensorFlow on first use.
+The proposed handwritten alphanumeric recognition system uses the EMNIST (Extended MNIST) dataset, specifically the ByClass variant. This dataset is an extension of the original MNIST dataset and includes both digits and alphabets, making it suitable for alphanumeric recognition tasks.
+The dataset contains a total of 62 classes, which include digits (0–9), uppercase letters (A–Z), and lowercase letters (a–z). Each image in the dataset is a 28 × 28 Pixel grayscale image, where pixel values range from 0 to 255. These images represent individual handwritten characters collected from different writers, ensuring a wide variety of handwriting styles.
+The dataset consists of approximately 697,932 training images and 116,323 testing images, providing a large amount of data for model training and evaluation. Before feeding the data into the model, preprocessing steps such as grayscale normalization, resizing, and noise reduction are applied to improve accuracy.
+The diversity and large size of the EMNIST dataset help the model learn various writing patterns and generalize well to real-world handwritten inputs, making it highly effective for this project.
+<img width="4298" height="230" alt="image" src="https://github.com/user-attachments/assets/25ac9c9d-ae69-4ed5-9727-7621844ac7af" />
 
 ---
 
