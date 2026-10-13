@@ -1,4 +1,4 @@
-# EMNIST Multi-Digit Handwritten Recognition
+# HAND WRITTEN ALPHA NUMERIC RECOGNITION USING DEEP LEARNING
 ### Deep Learning Web Application · TensorFlow · Flask
 
 ---
@@ -18,7 +18,7 @@ A full-stack web application that lets users **draw digits on a browser canvas**
 |---|---|
 | Deep Learning | TensorFlow · Keras |
 | Model Type | Convolutional Neural Network (CNN) |
-| Dataset | MNIST (60,000 training / 10,000 test images) |
+| Dataset |  
 | Backend | Flask (Python) |
 | Image Processing | OpenCV · Pillow |
 | Frontend | HTML5 · CSS3 · Vanilla JavaScript |
@@ -42,7 +42,7 @@ digit_recognition_project/
 ├── templates/
 │   └── index.html              ← main drawing interface
 │
-├── train_model.py              ← load MNIST, build CNN, train, save model
+├── train_model.py              ← load EMNIST, build CNN, train, save model
 ├── predict.py                  ← single & multi-digit prediction helpers
 ├── app.py                      ← Flask routes + Base64 image handling
 ├── requirements.txt
