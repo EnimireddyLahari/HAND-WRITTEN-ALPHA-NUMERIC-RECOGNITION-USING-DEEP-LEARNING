@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in · ASCII62 OCR</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body class="auth-body">
+
+  <main class="auth-main">
+    <div class="auth-card">
+      <div class="header-tag" style="margin-bottom: 12px;">Session</div>
+      <h1 class="auth-title">Log <span>in</span></h1>
+      <p class="auth-sub">Use your account to open the OCR canvas.</p>
+
+      {% with messages = get_flashed_messages(category_filter=["success"]) %}
+        {% if messages %}
+          {% for msg in messages %}
+            <p class="auth-flash-success">{{ msg }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% if error %}
+        <p class="error-text">{{ error }}</p>
+      {% endif %}
+
+      <form method="post" action="{{ url_for('login') }}" class="auth-form">
+        <input type="hidden" name="next" value="{{ next_url or '' }}" />
+        <label class="form-label" for="username">Username</label>
+        <input class="form-input" id="username" name="username" type="text" autocomplete="username" required autofocus value="{{ username or '' }}" />
+
+        <label class="form-label" for="password">Password</label>
+        <input class="form-input" id="password" name="password" type="password" autocomplete="current-password" required />
+
+        <button type="submit" class="btn btn-predict auth-submit">Log in</button>
+      </form>
+
+      <p class="auth-switch">
+        No account?
+        <a href="{{ url_for('signup') }}">Sign up</a>
+        &nbsp;·&nbsp;
+        <a href="{{ url_for('live_demo') }}">See live output</a>
+        &nbsp;·&nbsp;
+        <a href="{{ url_for('output_preview') }}">UI preview</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    ASCII62 OCR · Flask
+  </footer>
+</body>
+</html>

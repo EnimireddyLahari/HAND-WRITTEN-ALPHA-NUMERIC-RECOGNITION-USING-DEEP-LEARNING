@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASCII62 OCR (Digits + Letters)</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────────────── -->
+  <header>
+    <nav class="header-nav" aria-label="Account">
+      <span class="user-badge">Signed in as <strong>{{ session.get('username', 'user') }}</strong></span>
+      <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
+    </nav>
+    <div class="header-tag">CNN · OCR · Deep Learning</div>
+    <h1>Handwritten <span>Alphanumeric</span> Recognition</h1>
+    <p class="subtitle">Draw digits/letters (one line works best) · click Predict</p>
+  </header>
+
+  <!-- ── Main app grid ────────────────────────────────────────────── -->
+  <main>
+
+    <!-- ── Left: Drawing canvas ─────────────────────────────────── -->
+    <div class="card">
+      <div class="card-label">Input Canvas</div>
+
+      <div class="canvas-wrap">
+        <canvas id="drawing-canvas" width="280" height="280"></canvas>
+        <!-- decorative corner brackets -->
+        <div class="canvas-corner corner-tl"></div>
+        <div class="canvas-corner corner-tr"></div>
+        <div class="canvas-corner corner-bl"></div>
+        <div class="canvas-corner corner-br"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-predict" id="btn-predict">▶ Predict</button>
+        <button class="btn btn-clear"   id="btn-clear"  >✕ Clear</button>
+      </div>
+
+      <p class="kbd-hint">
+        <kbd>Enter</kbd> predict &nbsp;·&nbsp; <kbd>Esc</kbd> clear
+      </p>
+    </div>
+
+    <!-- ── Right: Result panel ──────────────────────────────────── -->
+    <div class="card result-card">
+      <div class="card-label">Prediction &amp; analysis</div>
+
+      <div id="result-display">
+        <!-- Loader (hidden by default) -->
+        <div id="loader">
+          <div class="spinner"></div>
+          <span class="loader-text">Running inference…</span>
+        </div>
+
+        <!-- Placeholder message (shown on load) -->
+        <p class="placeholder-text">Draw digits/letters and click <strong>Predict</strong></p>
+      </div>
+    </div>
+
+    <!-- ── Stats row ──────────────────────────────────────────────── -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-value">~698k</span>
+        <span class="stat-label">EMNIST (ByClass) pool</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">Val EMNIST</span>
+        <span class="stat-label">Freehand canvas can differ</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">Char CNN</span>
+        <span class="stat-label">+ CRNN fallback</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────────────────── -->
+  <footer>
+    ASCII62 Multi-Line OCR &nbsp;·&nbsp; TensorFlow / Keras CRNN+CTC &nbsp;·&nbsp; Flask Backend
+  </footer>
+
+  <!-- ── Scripts ──────────────────────────────────────────────────── -->
+  <script src="{{ url_for('static', filename='js/canvas.js') }}"></script>
+</body>
+</html>

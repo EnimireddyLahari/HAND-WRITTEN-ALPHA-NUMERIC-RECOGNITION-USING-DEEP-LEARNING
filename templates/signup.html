@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign up · ASCII62 OCR</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body class="auth-body">
+
+  <main class="auth-main">
+    <div class="auth-card">
+      <div class="header-tag" style="margin-bottom: 12px;">Account</div>
+      <h1 class="auth-title">Sign <span>up</span></h1>
+      <p class="auth-sub">Create a username and password (8+ characters).</p>
+
+      {% if error %}
+        <p class="error-text">{{ error }}</p>
+      {% endif %}
+
+      <form method="post" action="{{ url_for('signup') }}" class="auth-form">
+        <label class="form-label" for="username">Username</label>
+        <input class="form-input" id="username" name="username" type="text" autocomplete="username" required autofocus value="{{ username or '' }}" />
+
+        <label class="form-label" for="password">Password</label>
+        <input class="form-input" id="password" name="password" type="password" autocomplete="new-password" required />
+
+        <label class="form-label" for="password2">Confirm password</label>
+        <input class="form-input" id="password2" name="password2" type="password" autocomplete="new-password" required />
+
+        <button type="submit" class="btn btn-predict auth-submit">Create account</button>
+      </form>
+
+      <p class="auth-switch">
+        Already have an account?
+        <a href="{{ url_for('login') }}">Log in</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    ASCII62 OCR · Flask
+  </footer>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample UI · OCR output</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <header>
+    <div class="header-tag">Static preview</div>
+    <h1>What <span>output</span> looks like</h1>
+    <p class="subtitle">Mock data — shows the layout you see after clicking Predict (no model run).</p>
+    <nav class="header-nav" style="justify-content: center; margin-top: 16px;">
+      <a class="nav-link" href="{{ url_for('live_demo') }}">Live model demo</a>
+      <a class="nav-link" href="{{ url_for('login') }}">Log in</a>
+    </nav>
+  </header>
+
+  <main style="grid-template-columns: 1fr; max-width: 560px;">
+    <div class="card result-card">
+      <div class="card-label">Prediction &amp; analysis</div>
+      <div id="result-display" style="display: block;">
+        <div class="result-main">42A</div>
+        <div class="digit-chips">
+          <span class="digit-chip"><span class="chip-digit">42A</span><span class="chip-conf">91.2%</span></span>
+        </div>
+        <div class="conf-bar-wrap">
+          <div class="conf-bar" style="width: 91%;"></div>
+        </div>
+        <div class="conf-label">Avg confidence: <strong>91.2%</strong></div>
+
+        <div class="analysis-panel">
+          <div class="analysis-heading">Output analysis</div>
+          <div class="analysis-row analysis-row--good">
+            <span class="analysis-label">Recognized text</span>
+            <span class="analysis-value">42A</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-label">Lines detected</span>
+            <span class="analysis-value">1</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-label">Pipeline</span>
+            <span class="analysis-value">Character ROIs + EMNIST-style CNN (example).</span>
+          </div>
+          <div class="analysis-row">
+            <span class="analysis-label">Average confidence</span>
+            <span class="analysis-value">91.2% — Model scores this as fairly confident.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>ASCII62 OCR · static preview only</footer>
+</body>
+</html>

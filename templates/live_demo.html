@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live demo · OCR output</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <header>
+    <div class="header-tag">Live inference</div>
+    <h1>Real <span>model</span> output</h1>
+    <p class="subtitle">Server drew sample strokes, ran the same pipeline as Predict, and rendered the JSON below.</p>
+    <nav class="header-nav" style="justify-content: center; margin-top: 16px;">
+      <a class="nav-link" href="{{ url_for('output_preview') }}">Static preview</a>
+      <a class="nav-link" href="{{ url_for('login') }}">Log in</a>
+      <a class="nav-link" href="{{ url_for('index') }}">App canvas</a>
+    </nav>
+  </header>
+
+  <main style="grid-template-columns: 1fr; max-width: 560px;">
+    <div class="card">
+      <div class="card-label">Sample input (280×280)</div>
+      <p class="placeholder-text" style="margin-bottom: 12px;">Synthetic white-on-black digits/letters — same shape the model expects after canvas invert.</p>
+      <div class="canvas-wrap">
+        <img src="{{ image_data_url }}" alt="Sample input" style="display:block; border-radius:10px; max-width:100%; height:auto;" />
+      </div>
+    </div>
+
+    <div class="card result-card">
+      <div class="card-label">Prediction &amp; analysis</div>
+      <div id="result-display" style="display: block; align-items: stretch;">
+        {% set err = result.get('error') %}
+        {% if err %}
+        <p class="error-banner">⚠ {{ err }}</p>
+        {% else %}
+        <div class="result-main" style="white-space: pre-line;">{{ result.get('prediction_text', '') }}</div>
+        <div class="digit-chips">
+          {% for line in result.get('lines') or [] %}
+          <span class="digit-chip">
+            <span class="chip-digit">{{ line.get('text', '') }}</span>
+            <span class="chip-conf">{{ '%.1f'|format(line.get('confidence', 0)|float) }}%</span>
+          </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% set an = result.get('analysis') %}
+        {% if an and an.get('items') %}
+        <div class="analysis-panel">
+          <div class="analysis-heading">Output analysis</div>
+          {% for row in an['items'] %}
+          <div class="analysis-row{% if row.tone == 'bad' %} analysis-row--bad{% elif row.tone == 'good' %} analysis-row--good{% elif row.tone == 'tip' %} analysis-row--tip{% endif %}">
+            <span class="analysis-label">{{ row.label }}</span>
+            <span class="analysis-value">{{ row.value }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <details style="margin-top: 20px; width: 100%; font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted);">
+          <summary style="cursor: pointer; color: var(--amber);">Raw JSON</summary>
+          <pre style="margin-top: 12px; padding: 12px; background: var(--bg-inner); border-radius: 8px; overflow: auto; text-align: left; white-space: pre-wrap;">{{ raw_json }}</pre>
+        </details>
+      </div>
+    </div>
+  </main>
+
+  <footer>Refresh this page to re-run inference with a new random sample.</footer>
+</body>
+</html>

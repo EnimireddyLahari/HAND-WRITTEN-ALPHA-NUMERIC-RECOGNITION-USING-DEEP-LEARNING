@@ -1,0 +1,8 @@
+# Keras 3 .keras (zip) checkpoints require TensorFlow >= 2.15 (bundled Keras 3).
+tensorflow>=2.15.0,<2.18.0
+flask
+numpy
+opencv-python
+pillow
+matplotlib
+tensorflow-datasets
