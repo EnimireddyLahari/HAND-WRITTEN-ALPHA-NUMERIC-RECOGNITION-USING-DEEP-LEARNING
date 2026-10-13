@@ -5,10 +5,9 @@
 
 ## 📌 Project Description
 
-A full-stack web application that lets users **draw digits on a browser canvas** and instantly recognises them using a **Convolutional Neural Network (CNN)** trained on the EMNIST dataset.
+In many real-world applications such as banking, education, and document processing, handwritten data is still widely used. Converting this handwritten information into digital form is important for automation and data management. However, recognizing handwritten digits and alphabets is a challenging task because handwriting varies from person to person in terms of style, size, and orientation. Traditional methods like SVM and KNN require manual feature extraction and are not efficient in handling such variations. They also struggle with multi-character inputs and do not provide high accuracy or real-time performance. To solve this, a deep learning-based system using deep learning models such as CNN and CRNN trained on the EMNIST dataset to recognize handwritten digits and alphabets accurately and to handle both single and multiple characters, and provide fast, real-time results.  The system uses preprocessing techniques like grayscale conversion, resizing, normalization, and ROI segmentation. It provides real-time predictions through a web interface and can be extended for advanced applications.
+<img width="16384" height="88" alt="image" src="https://github.com/user-attachments/assets/2c3dedc5-9296-4995-acdb-84de65343759" />
 
-- Draw a single digit → get a prediction with confidence score  
-- Draw multiple digits (e.g. `583`) → get each digit segmented and predicted separately
 
 ---
 
