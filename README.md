@@ -11,18 +11,7 @@ In many real-world applications such as banking, education, and document process
 
 ---
 
-## 🧠 Technology Stack
 
-| Layer | Technology |
-|---|---|
-| Deep Learning | TensorFlow · Keras |
-| Model Type | Convolutional Neural Network (CNN) |
-| Dataset |  
-| Backend | Flask (Python) |
-| Image Processing | OpenCV · Pillow |
-| Frontend | HTML5 · CSS3 · Vanilla JavaScript |
-| Drawing Input | HTML5 Canvas API |
-| Visualisation | Matplotlib |
 
 ---
 
@@ -131,9 +120,9 @@ http://127.0.0.1:5000
 
 ---
 
-## 📊 Multi-Digit Recognition
+## 📊 ALPHA NUMERIC RECOGNITION
 
-When the user draws multiple digits (e.g. `527`), the backend:
+When the user draws multiple digits (e.g. `527ABa`), the backend:
 
 1. Inverts the image (white digits → black background, matching MNIST format)
 2. Applies a binary threshold
@@ -141,7 +130,7 @@ When the user draws multiple digits (e.g. `527`), the backend:
 4. Sorts contours left-to-right by x-coordinate
 5. Extracts a padded ROI for each digit
 6. Passes each ROI through the CNN individually
-7. Concatenates the predicted digits into the final string
+7. Concatenates the predicted digits and alphabets into the final string
 
 ---
 
